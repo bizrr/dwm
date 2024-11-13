@@ -95,8 +95,8 @@ static const char *filemancmd[] = { "nautilus", NULL };
 // static const char *raisevolumecmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 // static const char *lowervolumecmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 // static const char *mutevolumecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-#define raisevolumecmd "changevolume -inc 5%"
-#define lowervolumecmd "changevolume -dec 5%"
+#define raisevolumecmd "/home/langsjo/.local/apps/changevolume -inc 5%"
+#define lowervolumecmd "/home/langsjo/.local/apps/changevolume -dec 5%"
 #define mutevolumecmd "pactl set-sink-mute @DEFAULT_SINK@ toggle; kill -38 $(pidof dwmblocks)"
 static const char *nextcmd[] = { "playerctl", "next", ";", "tizonia-ctl.sh", "next", NULL };
 static const char *prevcmd[] = { "playerctl", "prev", ";", "tizonia-ctl.sh", "prev", NULL };
