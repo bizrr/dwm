@@ -91,20 +91,7 @@ static const char *rofimenucmd[] = {"rofi", "-show", "drun", NULL};
 static const char *dmenucmd[] = {
     "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
-static const char *netmenucmd[] = {"networkmanager_dmenu",
-                                   "-m",
-                                   dmenumon,
-                                   "-fn",
-                                   dmenufont,
-                                   "-nb",
-                                   col_gray1,
-                                   "-nf",
-                                   col_gray3,
-                                   "-sb",
-                                   col_cyan,
-                                   "-sf",
-                                   col_gray4,
-                                   NULL};
+static const char *netmenucmd[] = {"networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL};
 static const char *termcmd[] = {"alacritty", NULL};
 static const char *filemancmd[] = {"nautilus", NULL};
 // static const char *rssreadcmd[] = { "st", "-e", "newsboat", NULL };
@@ -112,17 +99,17 @@ static const char *filemancmd[] = {"nautilus", NULL};
 // "sudo", "/usr/bin/brightnessctl", "set", "+5%", NULL }; */ static const char
 // *brightnessdowncmd[] = {"xbacklight", "-dec", "3%"};/*  { "sudo",
 // "/usr/bin/brightnessctl", "set", "5%-", NULL }; */
-#define brightnessupcmd "xbacklight -inc 3%; kill -42 $(pidof dwmblocks)"
-#define brightnessdowncmd "xbacklight -dec 3%; kill -42 $(pidof dwmblocks)"
+#define brightnessupcmd "light -A 3"
+#define brightnessdowncmd "light -U 3"
 // static const char *raisevolumecmd[] = { "pactl", "set-sink-volume",
 // "@DEFAULT_SINK@", "+5%", NULL }; static const char *lowervolumecmd[] = {
 // "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL }; static const
 // char *mutevolumecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@",
 // "toggle", NULL };
-#define raisevolumecmd "/home/langsjo/.local/apps/changevolume -inc 5%"
-#define lowervolumecmd "/home/langsjo/.local/apps/changevolume -dec 5%"
-#define mutevolumecmd                                                          \
-  "pactl set-sink-mute @DEFAULT_SINK@ toggle; kill -38 $(pidof dwmblocks)"
+#define raisevolumecmd "wpctl set-volume @DEFAULT_SINK@ 5%+ --limit 1"
+#define lowervolumecmd "wpctl set-volume @DEFAULT_SINK@ 5%- --limit 1"
+#define mutevolumecmd "wpctl set-mute @DEFAULT_SINK@ toggle"
+
 static const char *nextcmd[] = {"playerctl",      "next", ";",
                                 "tizonia-ctl.sh", "next", NULL};
 static const char *prevcmd[] = {"playerctl",      "prev", ";",
@@ -131,18 +118,8 @@ static const char *playpausecmd[] = {"playerctl",      "play-pause", ";",
                                      "tizonia-ctl.sh", "pp",         NULL};
 static const char *webcmd[] = {"firefox", NULL};
 static const char *lockcmd[] = {"slock", NULL};
-// static const char *screenshotcmd[] = { "maim",
-// "'/home/riugaman/Pictures/$(date +%s).png'", NULL }; static const char
-// *screenshotclipcmd[] = { "maim", "|", "xclip", "-selection", "clipboard",
-// "-t", "image/png", NULL }; static const char *areasscmd[] = { "maim", "-s",
-// "'/home/riugaman/Pictures/$(date +%s).png'", NULL }; static const char
-// *areassclipcmd[] = { "maim", "-s", "|", "xclip", "-selection", "clipboard",
-// "-t" "image/png", NULL };
-#define screenshotcmd "scrot -e 'mv $f ~/Pictures/Screenshots/'"
-#define screenshotclipcmd "maim -s | xclip -selection clipboard -t image/png"
-#define areasscmd "scrot -s -e 'mv $f ~/Pictures/Screenshots/'"
-#define areassclipcmd "maim -s | xclip -selection clipboard -t image/png"
-// static const char *playclipboardcmd[] = { "playclipboard.sh", NULL };
+
+#define screenshotcmd "rofi-screenshot"
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -190,12 +167,7 @@ static Key keys[] = {
     {0, XF86XK_AudioNext, spawn, {.v = nextcmd}},
     {0, XF86XK_AudioPrev, spawn, {.v = prevcmd}},
     {0, XF86XK_AudioPlay, spawn, {.v = playpausecmd}},
-    {0, XK_Print, spawn, SHCMD(screenshotcmd)},
-    {MODKEY, XK_Print, spawn, SHCMD(areasscmd)},
-    {ShiftMask, XK_Print, spawn, SHCMD(screenshotclipcmd)},
-    {MODKEY | ShiftMask, XK_s, spawn, SHCMD(areassclipcmd)},
-    // { MODKEY|ShiftMask,			    XK_w,	   spawn,
-    // {.v = playclipboardcmd } },
+    {MODKEY, XK_Print, spawn, SHCMD(screenshotcmd)},
 };
 
 /* button definitions */
