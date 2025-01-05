@@ -88,6 +88,7 @@ static const char *rebootcmd[] = {"sudo", "reboot", "now", NULL};
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *rofimenucmd[] = {"rofi", "-show", "drun", NULL};
+static const char *rofiscreenshotcmd[] = {"rofi-screenshot", NULL};
 static const char *dmenucmd[] = {
     "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
@@ -119,13 +120,13 @@ static const char *playpausecmd[] = {"playerctl",      "play-pause", ";",
 static const char *webcmd[] = {"firefox", NULL};
 static const char *lockcmd[] = {"slock", NULL};
 
-#define screenshotcmd "rofi-screenshot"
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
     {MODKEY | ShiftMask, XK_c, spawn, {.v = shutdowncmd}},
     {MODKEY | ShiftMask, XK_r, spawn, {.v = rebootcmd}},
     {MODKEY | ShiftMask, XK_d, spawn, {.v = netmenucmd}},
+    {MODKEY | ShiftMask, XK_s, spawn, {.v = rofiscreenshotcmd}},
     {MODKEY, XK_d, spawn, {.v = rofimenucmd}},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
     {MODKEY, XK_e, spawn, {.v = filemancmd}},
@@ -167,7 +168,6 @@ static Key keys[] = {
     {0, XF86XK_AudioNext, spawn, {.v = nextcmd}},
     {0, XF86XK_AudioPrev, spawn, {.v = prevcmd}},
     {0, XF86XK_AudioPlay, spawn, {.v = playpausecmd}},
-    {MODKEY, XK_Print, spawn, SHCMD(screenshotcmd)},
 };
 
 /* button definitions */
