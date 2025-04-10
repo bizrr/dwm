@@ -94,7 +94,7 @@ static const char *dmenucmd[] = {
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
 static const char *netmenucmd[] = {"networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL};
 static const char *termcmd[] = {"alacritty", NULL};
-static const char *filemancmd[] = {"nautilus", NULL};
+static const char *filemancmd[] = {"thunar", NULL};
 // static const char *rssreadcmd[] = { "st", "-e", "newsboat", NULL };
 // static const char *brightnessupcmd[] = {"xbacklight", "-inc", "3%"};/* {
 // "sudo", "/usr/bin/brightnessctl", "set", "+5%", NULL }; */ static const char
