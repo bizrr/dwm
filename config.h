@@ -82,9 +82,6 @@ static const Layout layouts[] = {
 
 /* commands */
 
-static const char *shutdowncmd[] = {"shutdown", "now", NULL};
-static const char *rebootcmd[] = {"sudo", "reboot", "now", NULL};
-
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *rofimenucmd[] = {"rofi", "-show", "drun", NULL};
@@ -123,8 +120,6 @@ static const char *lockcmd[] = {"slock", NULL};
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
-    {MODKEY | ShiftMask, XK_c, spawn, {.v = shutdowncmd}},
-    {MODKEY | ShiftMask, XK_r, spawn, {.v = rebootcmd}},
     {MODKEY | ShiftMask, XK_d, spawn, {.v = netmenucmd}},
     {MODKEY | ShiftMask, XK_s, spawn, {.v = rofiscreenshotcmd}},
     {MODKEY, XK_d, spawn, {.v = rofimenucmd}},
