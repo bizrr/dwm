@@ -47,7 +47,7 @@ static const Rule rules[] = {
     {NULL, NULL, "Steam - News", 0, 1, -1},
     {NULL, "origin.exe", NULL, 0, 1, -1},
     {"TelegramDesktop", "telegram-desktop", NULL, 1 << 4, 0, -1},
-    {"AyuGramDesktop", "ayugram-desktop", NULL, 1 << 4, 0, -1},
+    {"AyuGramDesktop", "AyuGram", NULL, 1 << 4, 0, -1},
 };
 
 /* layout(s) */
